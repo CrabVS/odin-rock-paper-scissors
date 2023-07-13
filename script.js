@@ -1,4 +1,6 @@
 const handChoices = ['rock', 'scissors', 'paper'];
+let playerScore = 0;
+let computerScore = 0;
 
 const getComputerChoice = function getComputerChoice() {
     let randomNumber = Math.floor(Math.random () * 3);
@@ -6,6 +8,7 @@ const getComputerChoice = function getComputerChoice() {
     return handChoices[randomNumber];
 }
 
+// Calculates the winner and returns the results
 const startRound = function startRoundAndReturnWinner(playerChoice, ComputerChoice) {
 
     const filteredPlayerChoice = playerChoice.toLowerCase();
@@ -23,12 +26,36 @@ const startRound = function startRoundAndReturnWinner(playerChoice, ComputerChoi
     if (filteredPlayerChoice === ComputerChoice) {
         return drawMessage;
     } else if (filteredPlayerChoice === 'rock' && ComputerChoice === 'scissors') {
+        playerScore += 1;
         return playerWinningMessage;
     } else if (filteredPlayerChoice === 'scissors' && ComputerChoice === 'paper') {
+        playerScore += 1;
         return playerWinningMessage;
     } else if (filteredPlayerChoice === 'paper' && ComputerChoice === 'rock') {
+        playerScore += 1;
         return playerWinningMessage;
     } else {
+        computerScore += 1;
         return playerLosingMessage;
     }
 }
+
+const game = function gameController() {
+    let winner;
+
+    while (winner === undefined) {
+
+        let playerChoice = prompt();
+        console.log(startRound(playerChoice, getComputerChoice()));
+
+        if (playerScore === 3) {
+            winner = 'Player';
+        } else if (computerScore === 3) {
+            winner = 'Computer';
+        }
+    }
+
+    console.log(`${winner} is the winner!`);
+}
+
+game();
