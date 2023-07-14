@@ -1,80 +1,42 @@
 const handChoices = ['rock', 'scissors', 'paper'];
 
+let winner = null;
+let round = 0;
+let score = 0;
+
 const getComputerChoice = function getComputerChoice() {
     let randomNumber = Math.floor(Math.random () * 3);
     
     return handChoices[randomNumber];
 }
 
-// Calculates the winner and returns the results
-const startRound = function startRoundAndReturnWinner(playerChoice, ComputerChoice) {
-
-    const filteredPlayerChoice = playerChoice.toLowerCase();
-    const playerWinningMessage = `Player wins! ${filteredPlayerChoice} beats ${ComputerChoice}`;
-    const playerLosingMessage = `Player loses! ${ComputerChoice} beats ${filteredPlayerChoice}`;
-
-    if (!handChoices.includes(filteredPlayerChoice)) {
-        console.log('Invalid Hand');
-        return 0;
+const checkGameWinner = function checkForGameWinner(playerScore, computerScore) {
+    if (playerScore === 3) {
+        winner = 'Player';
+    } else if (computerScore === 3) {
+        winner = 'Computer';
     }
+}
 
-    // Checks if there's a draw first.
-    // Checks to see if player beats computer.
-    // Otherwise returns computer as the winner.
-    if (filteredPlayerChoice === ComputerChoice) {
-        console.log('It\'s a Draw!');
+// Calculates the winner and returns the results
+const startRound = function startRoundAndReturnWinner(playerChoice, computerChoice) {
+    
+    // Checks if there's a draw first. Then if player beats computer. Otherwise returns computer as winner.
+    if (playerChoice === computerChoice) {
         return 0;
-    } else if (filteredPlayerChoice === 'rock' && ComputerChoice === 'scissors') {
-        console.log(playerWinningMessage);
+    } else if (playerChoice === 'rock' && computerChoice === 'scissors') {
         return 1;
-    } else if (filteredPlayerChoice === 'scissors' && ComputerChoice === 'paper') {
-        console.log(playerWinningMessage);
+    } else if (playerChoice === 'scissors' && computerChoice === 'paper') {
         return 1;
-    } else if (filteredPlayerChoice === 'paper' && ComputerChoice === 'rock') {
-        console.log(playerWinningMessage);
+    } else if (playerChoice === 'paper' && computerChoice === 'rock') {
         return 1;
     } else {
-        console.log(playerLosingMessage);
         return -1;
     }
 }
 
 const game = function gameController() {
-    let winner;
-    let round = 0;
-    let score = 0;
-
-    // for (let i = 0; i < 5; i++) {
-
-    //     let playerChoice = prompt();
-        
-    //     // Prevents error if user cancels prompt
-    //     if (playerChoice !== null) {
-    //         let roundResults = startRound(playerChoice, getComputerChoice());
-
-    //         round += Math.abs(roundResults);
-    //         score += roundResults;
-    //         if (roundResults === 0) {
-    //             i--;
-    //         }
-    //     } else {
-    //         console.log('Please decide on a hand!');
-    //         i--;
-    //     }
-
-    //     // Checks to see if there's a game winner
-    //     if (round === 5) {
-    //         winner = score > 0 ? 'Player' : 'Computer';
-    //     } else if (score === 3 || (round === 4 && score === 2)) {
-    //         winner = 'Player';
-    //         break;
-    //     } else if (score === -3 || (round === 4 && score === -2)) {
-    //         winner = 'Computer';
-    //         break;
-    //     }
-    // }
-
-    console.log(`${winner} is the winner!`);
+    const buttons
 }
 
 game();
