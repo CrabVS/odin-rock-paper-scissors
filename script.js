@@ -64,15 +64,17 @@ const game = function gameController() {
     const buttons = document.querySelectorAll('button');
     buttons.forEach((button, index) => {
         button.addEventListener('click', () => {
-            const results = startRound(handChoices[index]);
-            score = addScore(score[0], score[1], results);
-
-            console.log(`Score: ${score[0]} - ${score[1]}`);
-
-            winner = checkGameWinner(score.slice());
-
-            if (winner !== null) {
-                announceWinner(winner);
+            if (winner === null) {
+                const results = startRound(handChoices[index]);
+                score = addScore(score[0], score[1], results);
+    
+                console.log(`Score: ${score[0]} - ${score[1]}`);
+    
+                winner = checkGameWinner(score.slice());
+    
+                if (winner !== null) {
+                    announceWinner(winner);
+                }
             }
         });
     });
