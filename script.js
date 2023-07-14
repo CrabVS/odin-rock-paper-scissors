@@ -44,35 +44,35 @@ const game = function gameController() {
     let round = 0;
     let score = 0;
 
-    for (let i = 0; i < 5; i++) {
+    // for (let i = 0; i < 5; i++) {
 
-        let playerChoice = prompt();
+    //     let playerChoice = prompt();
         
-        // Prevents error if user cancels prompt
-        if (playerChoice !== null) {
-            let roundResults = startRound(playerChoice, getComputerChoice());
+    //     // Prevents error if user cancels prompt
+    //     if (playerChoice !== null) {
+    //         let roundResults = startRound(playerChoice, getComputerChoice());
 
-            round += Math.abs(roundResults);
-            score += roundResults;
-            if (roundResults === 0) {
-                i--;
-            }
-        } else {
-            console.log('Please decide on a hand!');
-            i--;
-        }
+    //         round += Math.abs(roundResults);
+    //         score += roundResults;
+    //         if (roundResults === 0) {
+    //             i--;
+    //         }
+    //     } else {
+    //         console.log('Please decide on a hand!');
+    //         i--;
+    //     }
 
-        // Checks to see if there's a game winner
-        if (round === 5) {
-            winner = score > 0 ? 'Player' : 'Computer';
-        } else if (score === 3 || (round === 4 && score === 2)) {
-            winner = 'Player';
-            break;
-        } else if (score === -3 || (round === 4 && score === -2)) {
-            winner = 'Computer';
-            break;
-        }
-    }
+    //     // Checks to see if there's a game winner
+    //     if (round === 5) {
+    //         winner = score > 0 ? 'Player' : 'Computer';
+    //     } else if (score === 3 || (round === 4 && score === 2)) {
+    //         winner = 'Player';
+    //         break;
+    //     } else if (score === -3 || (round === 4 && score === -2)) {
+    //         winner = 'Computer';
+    //         break;
+    //     }
+    // }
 
     console.log(`${winner} is the winner!`);
 }
