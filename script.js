@@ -35,10 +35,6 @@ const startRound = function startRound(playerChoice) {
     const computerChoice = getComputerChoice();
     const results = checkRoundWinner(playerChoice, computerChoice);
 
-    if (results === 0) console.log('Draw!');
-    else if (results === 1) console.log('Player Wins!');
-    else console.log('Computer Wins!');
-
     return results;
 }
 
@@ -50,6 +46,18 @@ const addScore = function addScore(playerScore, computerScore, roundResults) {
     }
 
     return [playerScore, computerScore];
+}
+
+const announceResults = function announceResults(roundResults) {
+    const resultsEl = document.getElementById('results');
+
+    if (roundResults > 0) {
+        resultsEl.textContent = 'Player Wins!';
+    } else if (roundResults < 0) {
+        resultsEl.textContent = 'Computer Wins!';
+    } else {
+        resultsEl.textContent = 'It\'s a Draw!'
+    }
 }
 
 const announceWinner = function announceWinner(winner) {
@@ -74,7 +82,7 @@ const game = function gameController() {
     
                 if (winner !== null) {
                     announceWinner(winner);
-                }
+                } else announceResults(results);
             }
         });
     });
