@@ -67,7 +67,8 @@ const announceResults = function announceResults(roundResults) {
 }
 
 const announceWinner = function announceWinner(winner) {
-    console.log(`${winner} is the winner!`)
+    const resultsEl = document.getElementById('results');
+    resultsEl.textContent = `${winner} is the winner!`;
 }
 
 const game = function gameController() {
