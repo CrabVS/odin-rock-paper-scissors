@@ -9,8 +9,8 @@ const getComputerChoice = function getComputerChoice() {
 }
 
 const checkGameWinner = function checkForGameWinner(score) {
-    if (score.includes(3)) {
-        return score[0] === 3 ? 'Player' : 'Computer';
+    if (score.includes(5)) {
+        return score[0] === 5 ? 'Player' : 'Computer';
     } else return null;
 }
 
@@ -48,6 +48,12 @@ const addScore = function addScore(playerScore, computerScore, roundResults) {
     return [playerScore, computerScore];
 }
 
+const updateScore = function updateDisplayedScore(score) {
+    const scoreEls = document.querySelectorAll('.score');
+    scoreEls[0].textContent = `Player: ${score[0]}`;
+    scoreEls[1].textContent = `Computer: ${score[1]}`;
+}
+
 const announceResults = function announceResults(roundResults) {
     const resultsEl = document.getElementById('results');
 
@@ -76,13 +82,14 @@ const game = function gameController() {
                 const results = startRound(handChoices[index]);
                 score = addScore(score[0], score[1], results);
     
-                console.log(`Score: ${score[0]} - ${score[1]}`);
-    
                 winner = checkGameWinner(score.slice());
     
+                updateScore(score.slice());
                 if (winner !== null) {
                     announceWinner(winner);
-                } else announceResults(results);
+                } else {
+                    announceResults(results);
+                }
             }
         });
     });
